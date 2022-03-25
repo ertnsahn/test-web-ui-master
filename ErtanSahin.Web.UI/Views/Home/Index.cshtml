@@ -1,0 +1,33 @@
+﻿@model ReservationViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Room Select</label>
+            <select class="form-control" asp-for="CreateForm.RoomId" asp-items="@Model.Rooms.Select(x => new SelectListItem(x.Name, x.Id.ToString()))"></select>
+        </div>
+        <div class="form-group">
+            <label>Reservation Start</label>
+            <input type="datetime" asp-for="CreateForm.ReservationStart" class="form-control" value="@DateTime.Now.ToString("dd-MM-yyyy hh:mm")">
+        </div>
+        <div class="form-group">
+            <label>Reservation End</label>
+            <input type="datetime" asp-for="CreateForm.ReservationEnd" class="form-control" value="@DateTime.Now.ToString("dd-MM-yyyy hh:mm")">
+        </div>
+        <div class="form-group">
+            <label>Mails</label>
+            <textarea asp-for="CreateForm.Mails" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Reservation</button>
+    }
+
+
+    <h1 class="display-4">Create Reservation</h1>
+
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
